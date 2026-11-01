@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Sign In - Exam Module</title>
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; }
+    .navbar { background-color: #004085; overflow: hidden; display: flex; justify-content: center; }
+    .navbar a { color: white; text-align: center; padding: 16px 24px; text-decoration: none; font-weight: bold; }
+    .navbar a:hover { background-color: #002752; }
+    .container { max-width: 400px; margin: 80px auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    h2 { text-align: center; color: #333; }
+    input[type="text"], input[type="password"] { width: 100%; padding: 12px; margin: 10px 0 20px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+    button { width: 100%; background-color: #28a745; color: white; padding: 12px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold;}
+    button:hover { background-color: #218838; }
+    .error { color: red; text-align: center; margin-bottom: 15px; }
+  </style>
+</head>
+<body>
+<div th:replace="~{fragments :: navbar}"></div>
+
+<div class="container">
+  <h2>Student Sign In</h2>
+  <p th:if="${error}" class="error" th:text="${error}"></p>
+  <form action="/login" method="post" autocomplete="off">
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text" name="username" placeholder="Enter your username" required autocomplete="off">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" name="password" placeholder="••••••••" required autocomplete="new-password">
+    </div>
+
+    <button type="submit" class="btn">Sign In</button>
+    <button type="reset" class="btn btn-secondary" style="margin-top: 15px;">Clear Inputs</button>
+  </form>
+</div>
+</body>
+</html>

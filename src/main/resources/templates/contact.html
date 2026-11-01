@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Contact - Exam Module</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; }
+        .navbar { background-color: #004085; overflow: hidden; display: flex; justify-content: center; }
+        .navbar a { color: white; text-align: center; padding: 16px 24px; text-decoration: none; font-weight: bold; }
+        .navbar a:hover { background-color: #002752; }
+        .container { max-width: 500px; margin: 60px auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #333; margin-top: 0; }
+        .subtitle { text-align: center; color: #666; margin-bottom: 25px; }
+        input[type="text"], input[type="email"], textarea { width: 100%; padding: 12px; margin: 8px 0 20px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-family: inherit;}
+        button { width: 100%; background-color: #0056b3; color: white; padding: 12px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold;}
+        button:hover { background-color: #004085; }
+    </style>
+</head>
+<body>
+<div th:replace="~{fragments :: navbar}"></div>
+<div class="container">
+    <h2>Contact Support</h2>
+    <p class="subtitle">Have a question about an exam? Send us a message.</p>
+    <form action="/contact" method="get">
+        <label>Name</label>
+        <input type="text" name="name" required>
+
+        <label>Email Address</label>
+        <input type="email" name="email" required>
+
+        <label>Message</label>
+        <textarea name="message" rows="5" required></textarea>
+
+        <button type="submit">Send Message</button>
+    </form>
+</div>
+</body>
+</html>
