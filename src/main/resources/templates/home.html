@@ -1,25 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Home - Exam Module</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; }
-        .navbar { background-color: #004085; overflow: hidden; display: flex; justify-content: center; }
-        .navbar a { color: white; text-align: center; padding: 16px 24px; text-decoration: none; font-weight: bold; }
-        .navbar a:hover { background-color: #002752; }
-        .container { max-width: 800px; margin: 80px auto; background: white; padding: 50px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center; }
-        h1 { color: #004085; font-size: 2.5em; margin-bottom: 20px; }
-        p { color: #555; line-height: 1.6; font-size: 18px; margin-bottom: 30px; }
-        .btn { display: inline-block; background-color: #28a745; color: white; padding: 14px 28px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 16px;}
-        .btn:hover { background-color: #218838; }
-    </style>
-</head>
+<head th:replace="~{fragments :: head('Home | NexaCorp Global Assessment')}"></head>
 <body>
 <div th:replace="~{fragments :: navbar}"></div>
-<div class="container">
-    <h1>Online Examination Portal</h1>
-    <p>A secure and professional platform to evaluate your skills. Prepare for your upcoming assessments, track your progress, and achieve your academic goals.</p>
-    <a href="/login" class="btn">Get Started</a>
+
+<div style="max-width: 1140px; margin: 60px auto; padding: 0 24px;">
+    <div style="background: linear-gradient(135deg, #0f172a 0%, #312e81 50%, #4f46e5 100%); border-radius: 28px; padding: 70px 50px; color: white; text-align: center; box-shadow: 0 25px 50px -12px rgba(49, 46, 129, 0.35);">
+        <span class="pill-tag">Enterprise Examination Suite v3.4</span>
+        <h1 style="font-size: 3.1rem; font-weight: 800; margin: 10px 0 20px 0; letter-spacing: -1px;">
+            Next-Generation Online Assessment Platform
+        </h1>
+        <p style="max-width: 680px; margin: 0 auto 36px auto; font-size: 1.15rem; line-height: 1.7; color: #e0e7ff;">
+            Conduct high-stakes academic and corporate examinations with automated grading, real-time timer enforcement, and comprehensive candidate analytics.
+        </p>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+            <a href="/login" class="btn-primary" style="width: auto; padding: 16px 36px; background: linear-gradient(135deg, #06b6d4, #3b82f6);">Launch Candidate Portal</a>
+            <a href="/register" class="btn-primary" style="width: auto; padding: 16px 36px; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.3); box-shadow: none;">Create New Account</a>
+        </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 40px;">
+        <div style="background: white; padding: 32px; border-radius: 20px; box-shadow: 0 10px 25px rgba(15,23,42,0.06); border-top: 5px solid #4f46e5;">
+            <h3 style="margin-top: 0; font-size: 1.3rem;">Timed Assessments</h3>
+            <p style="color: #475569; line-height: 1.6;">Automated countdown timers and structured multiple-choice modules built for university and corporate benchmarks.</p>
+        </div>
+        <div style="background: white; padding: 32px; border-radius: 20px; box-shadow: 0 10px 25px rgba(15,23,42,0.06); border-top: 5px solid #06b6d4;">
+            <h3 style="margin-top: 0; font-size: 1.3rem;">Instant Score Reports</h3>
+            <p style="color: #475569; line-height: 1.6;">Immediate evaluation upon submission with detailed breakdowns of correct answers and historical attempt logs.</p>
+        </div>
+        <div style="background: white; padding: 32px; border-radius: 20px; box-shadow: 0 10px 25px rgba(15,23,42,0.06); border-top: 5px solid #10b981;">
+            <h3 style="margin-top: 0; font-size: 1.3rem;">SQL Server Reliability</h3>
+            <p style="color: #475569; line-height: 1.6;">Backed by Microsoft SQL Server and Spring Data JPA for zero-data-loss persistence and rapid query execution.</p>
+        </div>
+    </div>
 </div>
 </body>
 </html>

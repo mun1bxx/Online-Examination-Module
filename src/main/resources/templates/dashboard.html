@@ -1,63 +1,59 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Dashboard - Exam Module</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; }
-        .navbar { background-color: #004085; overflow: hidden; display: flex; justify-content: space-between; padding: 0 40px; }
-        .navbar-brand { color: white; padding: 16px 0; font-weight: bold; font-size: 18px; text-decoration: none; }
-        .navbar-links { display: flex; }
-        .navbar-links a { color: white; text-align: center; padding: 16px 24px; text-decoration: none; font-weight: bold; }
-        .navbar-links a:hover { background-color: #002752; }
-        .logout-btn { background-color: #dc3545 !important; }
-        .logout-btn:hover { background-color: #c82333 !important; }
-
-        .container { max-width: 1000px; margin: 40px auto; }
-        .header-banner { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 30px; }
-        .header-banner h2 { margin: 0 0 10px 0; color: #333; }
-        .header-banner p { margin: 0; color: #666; }
-
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .card { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border-top: 4px solid #004085; }
-        .card h3 { margin-top: 0; color: #004085; }
-        .card p { color: #555; margin-bottom: 20px; min-height: 40px; }
-        .btn { display: inline-block; background-color: #0056b3; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 14px; }
-        .btn:hover { background-color: #004085; }
-    </style>
-</head>
+<head th:replace="~{fragments :: head('Dashboard | NexaCorp Workspace')}"></head>
 <body>
-<div class="navbar">
-    <a href="/dashboard" class="navbar-brand">ExamModule Portal</a>
-    <div class="navbar-links">
-        <a href="/contact">Support</a>
-        <!-- Redirects back to login on logout -->
-        <a href="/login" class="logout-btn">Log Out</a>
-    </div>
-</div>
+<div th:replace="~{fragments :: dashboard-navbar}"></div>
 
-<div class="container">
-    <div class="header-banner">
-        <h2>Student Dashboard</h2>
-        <p>Welcome back! View your pending exams and track your academic progress.</p>
+<div style="max-width: 1140px; margin: 40px auto; padding: 0 24px;">
+    <!-- Gradient Executive Banner -->
+    <div style="background: linear-gradient(135deg, #1e1b4b 0%, #4f46e5 55%, #06b6d4 100%); color: white; padding: 44px 48px; border-radius: 24px; box-shadow: 0 20px 40px -15px rgba(79, 70, 229, 0.35); margin-bottom: 36px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+        <div>
+            <span class="pill-tag">Active Candidate Session</span>
+            <h1 style="margin: 6px 0 10px 0; font-size: 2.2rem; font-weight: 800;">
+                Welcome back, <span th:text="${user != null ? user.username : 'Candidate'}">Candidate</span>!
+            </h1>
+            <p style="margin: 0; font-size: 1.05rem; opacity: 0.9;">
+                Your examination workspace is synced and ready. Select a module below to continue.
+            </p>
+        </div>
+        <a href="/admin/create-exam" style="background: rgba(255,255,255,0.18); color: white; text-decoration: none; padding: 14px 24px; border-radius: 12px; font-weight: 700; border: 1px solid rgba(255,255,255,0.3);">
+            + Create New Exam
+        </a>
     </div>
 
-    <div class="grid">
-        <div class="card">
-            <h3>Available Exams</h3>
-            <p>You have new assigned assessments waiting to be completed.</p>
-            <a href="#" class="btn">Start Exam</a>
+    <!-- Action Cards Grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px;">
+        <div style="background: white; padding: 32px; border-radius: 20px; box-shadow: 0 12px 30px rgba(15, 23, 42, 0.07); border-top: 5px solid #4f46e5; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+                <span style="background: #e0e7ff; color: #4338ca; padding: 5px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 700;">ASSESSMENTS</span>
+                <h3 style="font-size: 1.4rem; margin: 16px 0 10px 0;">Available Examinations</h3>
+                <p style="color: #64748b; line-height: 1.6; margin-bottom: 28px;">
+                    Launch your assigned technical and academic evaluations. Ensure a stable connection before starting the timer.
+                </p>
+            </div>
+            <a href="/admin/create-exam" class="btn-primary">Manage / Start Exams</a>
         </div>
 
-        <div class="card">
-            <h3>Past Results</h3>
-            <p>Review your grades and detailed feedback from previous tests.</p>
-            <a href="#" class="btn">View Scores</a>
+        <div style="background: white; padding: 32px; border-radius: 20px; box-shadow: 0 12px 30px rgba(15, 23, 42, 0.07); border-top: 5px solid #06b6d4; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+                <span style="background: #cffafe; color: #0e7490; padding: 5px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 700;">ANALYTICS</span>
+                <h3 style="font-size: 1.4rem; margin: 16px 0 10px 0;">Transcripts &amp; Past Results</h3>
+                <p style="color: #64748b; line-height: 1.6; margin-bottom: 28px;">
+                    Review your historical scores, section-by-section accuracy breakdown, and verified completion certificates.
+                </p>
+            </div>
+            <a href="/contact" class="btn-primary" style="background: linear-gradient(135deg, #0891b2, #06b6d4);">Request Score Transcript</a>
         </div>
 
-        <div class="card">
-            <h3>Account Settings</h3>
-            <p>Manage your password and personal profile information.</p>
-            <a href="#" class="btn">Edit Profile</a>
+        <div style="background: white; padding: 32px; border-radius: 20px; box-shadow: 0 12px 30px rgba(15, 23, 42, 0.07); border-top: 5px solid #8b5cf6; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+                <span style="background: #f3e8ff; color: #6d28d9; padding: 5px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 700;">SECURITY</span>
+                <h3 style="font-size: 1.4rem; margin: 16px 0 10px 0;">Credentials &amp; Password</h3>
+                <p style="color: #64748b; line-height: 1.6; margin-bottom: 28px;">
+                    Update your account password or rotate your security credentials immediately in SQL Server.
+                </p>
+            </div>
+            <a href="/forgot-password" class="btn-primary" style="background: linear-gradient(135deg, #7c3aed, #ec4899);">Change Password</a>
         </div>
     </div>
 </div>

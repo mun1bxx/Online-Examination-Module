@@ -1,37 +1,52 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Register - Exam Module</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; }
-        .navbar { background-color: #004085; overflow: hidden; display: flex; justify-content: center; }
-        .navbar a { color: white; text-align: center; padding: 16px 24px; text-decoration: none; font-weight: bold; }
-        .navbar a:hover { background-color: #002752; }
-        .container { max-width: 400px; margin: 80px auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        h2 { text-align: center; color: #333; }
-        input[type="text"], input[type="password"] { width: 100%; padding: 12px; margin: 10px 0 20px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
-        button { width: 100%; background-color: #0056b3; color: white; padding: 12px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold;}
-        button:hover { background-color: #004085; }
-    </style>
-</head>
+<head th:replace="~{fragments :: head('Create Account | NexaCorp Assessment Portal')}"></head>
 <body>
 <div th:replace="~{fragments :: navbar}"></div>
 
-<div class="container">
-    <h2>Create an Account</h2>
-    <form action="/register" method="post" autocomplete="off">
-        <div class="form-group">
-            <label>Student Username</label>
-            <input type="text" name="username" placeholder="e.g. ali_42" required autocomplete="off">
-        </div>
-        <div class="form-group">
-            <label>Secure Password</label>
-            <input type="password" name="password" placeholder="••••••••" required autocomplete="new-password">
+<div class="auth-wrapper">
+    <div class="split-card">
+        <div class="split-Side" style="background: linear-gradient(135deg, #0f172a 0%, #0284c7 55%, #10b981 100%);">
+            <div>
+                <span class="pill-tag">Candidate Onboarding</span>
+                <h2>Start Your Certification Journey Today</h2>
+                <p>Create your unified profile to unlock technical evaluations, software engineering assessments, and official skill badges.</p>
+                <ul class="feature-list">
+                    <li><span class="feature-dot">✓</span> Immediate access to scheduled exams</li>
+                    <li><span class="feature-dot">✓</span> Personalized student dashboard</li>
+                    <li><span class="feature-dot">✓</span> Self-service password recovery</li>
+                </ul>
+            </div>
+            <div style="font-size: 0.85rem; opacity: 0.75;">
+                Verified Academic &amp; Enterprise Testing Environment
+            </div>
         </div>
 
-        <button type="submit" class="btn">Sign Up</button>
-        <button type="reset" class="btn btn-secondary" style="margin-top: 15px;">Clear Inputs</button>
-    </form>
+        <div class="split-form">
+            <h3>Create Candidate Account</h3>
+            <p class="subtitle">Set up your credentials in less than a minute</p>
+
+            <div th:if="${error}" class="alert-error" th:text="${error}"></div>
+
+            <form action="/register" method="post" autocomplete="off">
+                <div class="form-group">
+                    <label>Choose a Username</label>
+                    <input type="text" name="username" placeholder="e.g. ali_42" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label>Create Secure Password</label>
+                    <input type="password" name="password" placeholder="Minimum 6 characters" required autocomplete="new-password">
+                </div>
+
+                <button type="submit" class="btn-primary">Complete Registration</button>
+                <button type="reset" class="btn-clear">Clear Inputs</button>
+            </form>
+
+            <p style="text-align: center; margin-top: 24px; font-size: 0.92rem; color: #64748b;">
+                Already registered? <a href="/login" class="link-accent">Sign In instead</a>
+            </p>
+        </div>
+    </div>
 </div>
 </body>
 </html>

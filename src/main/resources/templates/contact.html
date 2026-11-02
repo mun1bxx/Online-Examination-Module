@@ -1,37 +1,52 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Contact - Exam Module</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; }
-        .navbar { background-color: #004085; overflow: hidden; display: flex; justify-content: center; }
-        .navbar a { color: white; text-align: center; padding: 16px 24px; text-decoration: none; font-weight: bold; }
-        .navbar a:hover { background-color: #002752; }
-        .container { max-width: 500px; margin: 60px auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        h2 { text-align: center; color: #333; margin-top: 0; }
-        .subtitle { text-align: center; color: #666; margin-bottom: 25px; }
-        input[type="text"], input[type="email"], textarea { width: 100%; padding: 12px; margin: 8px 0 20px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-family: inherit;}
-        button { width: 100%; background-color: #0056b3; color: white; padding: 12px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold;}
-        button:hover { background-color: #004085; }
-    </style>
-</head>
+<head th:replace="~{fragments :: head('Support Desk | NexaCorp Assessment Portal')}"></head>
 <body>
 <div th:replace="~{fragments :: navbar}"></div>
-<div class="container">
-    <h2>Contact Support</h2>
-    <p class="subtitle">Have a question about an exam? Send us a message.</p>
-    <form action="/contact" method="get">
-        <label>Name</label>
-        <input type="text" name="name" required>
 
-        <label>Email Address</label>
-        <input type="email" name="email" required>
+<div class="auth-wrapper">
+    <div class="split-card">
+        <div class="split-Side" style="background: linear-gradient(135deg, #0f172a 0%, #1e40af 55%, #3b82f6 100%);">
+            <div>
+                <span class="pill-tag">24/7 Technical Desk</span>
+                <h2>Candidate &amp; Faculty Support Center</h2>
+                <p>Experiencing an issue with exam access, timer synchronization, or credential recovery? Our engineering team responds within 2 hours.</p>
+                <ul class="feature-list">
+                    <li><span class="feature-dot">✓</span> Priority exam-day incident resolution</li>
+                    <li><span class="feature-dot">✓</span> Direct faculty &amp; proctor escalation</li>
+                    <li><span class="feature-dot">✓</span> Account &amp; transcript verification</li>
+                </ul>
+            </div>
+            <div style="font-size: 0.85rem; opacity: 0.75;">
+                Support SLA: 99.9% Uptime Guarantee
+            </div>
+        </div>
 
-        <label>Message</label>
-        <textarea name="message" rows="5" required></textarea>
+        <div class="split-form">
+            <h3>Submit a Support Ticket</h3>
+            <p class="subtitle">Fill out the details below and we will get right back to you</p>
 
-        <button type="submit">Send Message</button>
-    </form>
+            <div th:if="${sent}" class="alert-success" th:text="${sent}"></div>
+
+            <form action="/contact" method="get" autocomplete="off">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" name="name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label>Corporate / University Email</label>
+                    <input type="email" name="email" placeholder="name@university.edu" required>
+                </div>
+                <div class="form-group">
+                    <label>Issue Description</label>
+                    <textarea name="message" rows="4" placeholder="Describe the exam or account issue..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary">Submit Support Ticket</button>
+                <button type="reset" class="btn-clear">Clear Inputs</button>
+            </form>
+        </div>
+    </div>
 </div>
 </body>
 </html>
